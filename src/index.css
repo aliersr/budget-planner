@@ -308,13 +308,13 @@ main {
     font-weight: 900;
 }
 
-.contents-bill {
+.content-bill {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.contents-bill img {
+.content-bill img {
     width: 10rem;
 }
 
