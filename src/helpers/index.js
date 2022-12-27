@@ -8,14 +8,14 @@ export const generarId = () => {
 };
 
 
-export const formatDate = date => {
-  const newDate = new Date(date);
+export const formatFecha = () => {
+  const fechaNow = new Date();
   const option = {
     year: 'numeric',
     month: 'long',
     day: '2-digit',
   }
-  return newDate.toLocaleDateString('en-US', option);
+  return fechaNow.toLocaleDateString('en-US', option);
 
 }
 

@@ -1,29 +1,32 @@
-import React from 'react'
+import { useEffect } from 'react'
 
 import NewBudget from './NewBudget';
 import BudgetManagement from './BudgetManagement';
 
 
-const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
-
-
- 
+const Header = ({
+  budget,
+  setBudget,
+  isValidBudget,
+  setIsValidBudget,
+  bills }) => {
 
   return (
     <header>
       <h1>Budget Planner</h1>
 
       {isValidBudget ? (
-        <div>
-          <BudgetManagement
-            budget={budget}
-          />
-        </div>
+        <BudgetManagement
+          bills={bills}
+          budget={budget}
+
+
+        />
       ) : (
-        <NewBudget 
-        budget={budget} 
-        setBudget={setBudget} 
-        setIsValidBudget={setIsValidBudget} />
+        <NewBudget
+          budget={budget}
+          setBudget={setBudget}
+          setIsValidBudget={setIsValidBudget} />
       )}
     </header>
   );

@@ -4,7 +4,8 @@ import Message from './Message';
 
 const NewBudget = ({
   budget,
-  setBudget, setIsValidBudget }) => {
+  setBudget,
+  setIsValidBudget }) => {
 
   const [message, setMessage] = useState('');
 
@@ -25,12 +26,12 @@ const NewBudget = ({
       <form onSubmit={handleBudget} className='my-form'>
         <div className='field'>
           <label>Budget Definition</label>
-          <input 
-          className='new-budget' 
-          type='number' 
-          placeholder='Add a new budget' 
-          value={budget} 
-          onChange={(e) => setBudget(Number(e.target.value))} />
+          <input
+            className='new-budget'
+            type='number'
+            placeholder='Add a new budget'
+            value={budget}
+            onChange={(e) => setBudget(Number(e.target.value))} />
         </div>
 
         <input type='submit' value='Add Budget' />
