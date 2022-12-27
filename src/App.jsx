@@ -3,19 +3,51 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import ListBills from './components/ListBills';
+import Filters from './components/Filter';
 import { generarId } from './helpers';
 import IconNewBill from './img/new-bill.svg';
 
 function App() {
-  const [budget, setBudget] = useState(0);
+
+  const [budget, setBudget] = useState(
+    Number(localStorage.getItem('budget')) ?? 0
+  );
+  const [bills, setBills] = useState(
+    localStorage.getItem('bills') ? JSON.parse(localStorage.getItem('bills')) : []
+  );
   const [isValidBudget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
-  const [bills, setBills] = useState(
-    []
-    // localStorage.getItem('bills') ? JSON.parse(localStorage.getItem('bills')) : []
-  );
   const [editBill, setEditBill] = useState({});
+  const [filter, setFilter] = useState('');
+
+  //TODO: AQUI me quede
+  const [filterBills, setFilterBills] = useState([]);
+
+  useEffect(() => {
+    if (filter) {
+      //Filter by categories
+      const filterBills = bills.filter(bill => bill.category === filter)
+      console.log(filterBills);
+
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    localStorage.setItem('budget', budget) ?? 0;
+  }, [budget]);
+
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem('budget')) ?? 0;
+
+    if (budget > 0) {
+      setIsValidBudget(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('bills', JSON.stringify(bills) ?? []);
+  }, [bills]);
 
   useEffect(() => {
     if (Object.keys(editBill).length > 0) {
@@ -42,7 +74,6 @@ function App() {
   const saveBill = (bill) => {
 
     if (bill.id) {
-      //Update
       const updateBills = bills.map(
         billState => billState.id === bill.id ? bill : billState);
       setBills(updateBills);
@@ -79,6 +110,11 @@ function App() {
       {isValidBudget && (
         <>
           <main>
+            <Filters
+              filter={filter}
+              setFilter={setFilter}
+
+            />
             <ListBills
               bills={bills}
               setEditBill={setEditBill}
@@ -101,8 +137,8 @@ function App() {
           animateModal={animateModal}
           setAnimateModal={setAnimateModal}
           saveBill={saveBill}
-        editBill={editBill}
-        setEditBill={setEditBill}
+          editBill={editBill}
+          setEditBill={setEditBill}
         />}
     </div>
   );
