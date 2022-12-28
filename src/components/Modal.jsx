@@ -100,7 +100,6 @@ const Modal = ({
             <option value='vacations'>Vacations</option>
             <option value='health'>Health</option>
             <option value='subscriptions'>Subscriptions</option>
-            <option value='Other'>Other</option>
           </select>
         </div>
         <input

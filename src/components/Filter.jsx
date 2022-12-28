@@ -19,7 +19,6 @@ const Filter = ( { filter, setFilter }) => {
                       <option value='vacations'>Vacations</option>
                       <option value='health'>Health</option>
                       <option value='subscriptions'>Subscriptions</option>
-                      <option value='other'>Other</option>
                   </select>
               </div>
         </form>
