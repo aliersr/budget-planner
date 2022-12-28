@@ -20,15 +20,13 @@ function App() {
   const [animateModal, setAnimateModal] = useState(false);
   const [editBill, setEditBill] = useState({});
   const [filter, setFilter] = useState('');
-
-  //TODO: AQUI me quede
   const [filterBills, setFilterBills] = useState([]);
 
   useEffect(() => {
     if (filter) {
       //Filter by categories
       const filterBills = bills.filter(bill => bill.category === filter)
-      console.log(filterBills);
+      setFilterBills(filterBills);
 
     }
   }, [filter]);
@@ -102,6 +100,7 @@ function App() {
     <div className={modal ? 'pin-up' : ' '}>
       <Header
         bills={bills}
+        setBills={setBills}
         budget={budget}
         setBudget={setBudget}
         isValidBudget={isValidBudget}
@@ -119,6 +118,8 @@ function App() {
               bills={bills}
               setEditBill={setEditBill}
               deleteBill={deleteBill}
+              filter={filter}
+              filterBills={filterBills}
             />
           </main>
 

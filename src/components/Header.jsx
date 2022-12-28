@@ -9,7 +9,9 @@ const Header = ({
   setBudget,
   isValidBudget,
   setIsValidBudget,
-  bills }) => {
+  bills,
+  setBills
+}) => {
 
   return (
     <header>
@@ -18,7 +20,10 @@ const Header = ({
       {isValidBudget ? (
         <BudgetManagement
           bills={bills}
+          setBills={setBills}
           budget={budget}
+          setBudget={setBudget}
+          setIsValidBudget={setIsValidBudget}
 
 
         />
